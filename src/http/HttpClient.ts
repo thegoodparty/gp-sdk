@@ -1,21 +1,21 @@
-import { ofetch, FetchError } from 'ofetch'
-import type { GoodPartyClientConfig } from '../GoodPartyClient'
+import { ofetch, FetchError, FetchOptions } from 'ofetch'
 import { SdkError } from '../types/result'
 
-type JsonFetchOptions = Omit<RequestInit, 'body'> & {
-  body?: Record<string, unknown>
-}
+export type OfetchRequestBody = FetchOptions<'json'>['body']
 
 export class HttpClient {
   private baseUrl: string
   private m2mToken: string
 
-  constructor(config: GoodPartyClientConfig) {
-    this.baseUrl = config.gpApiRootUrl
-    this.m2mToken = config.m2mToken
+  constructor(gpApiRootUrl: string, m2mToken: string) {
+    this.baseUrl = gpApiRootUrl
+    this.m2mToken = m2mToken
   }
 
-  request = async <T>(path: string, init?: JsonFetchOptions): Promise<T> => {
+  request = async <T>(
+    path: string,
+    init?: FetchOptions<'json'>,
+  ): Promise<T> => {
     try {
       return await ofetch<T>(path, {
         baseURL: this.baseUrl,

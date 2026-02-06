@@ -1,4 +1,4 @@
-import type { HttpClient } from '../http/HttpClient'
+import type { HttpClient, OfetchRequestBody } from '../http/HttpClient'
 
 export abstract class BaseResource {
   protected httpClient: HttpClient
@@ -12,12 +12,12 @@ export abstract class BaseResource {
 
   protected postRequest = <T>(
     path: string,
-    body: Record<string, unknown>,
+    body: OfetchRequestBody,
   ): Promise<T> => this.httpClient.request<T>(path, { method: 'POST', body })
 
   protected putRequest = <T>(
     path: string,
-    body: Record<string, unknown>,
+    body: OfetchRequestBody,
   ): Promise<T> => this.httpClient.request<T>(path, { method: 'PUT', body })
 
   protected deleteRequest = <T>(path: string): Promise<T> =>
