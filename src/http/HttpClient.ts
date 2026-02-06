@@ -1,5 +1,4 @@
 import { ofetch, FetchError } from 'ofetch'
-import type { $Fetch } from 'ofetch'
 import type { GoodPartyClientConfig } from '../GoodPartyClient'
 import { SdkError } from '../types/result'
 
@@ -10,21 +9,23 @@ type JsonFetchOptions = Omit<RequestInit, 'body'> & {
 const extractData = <T>(data: T | undefined): T => data!
 
 export class HttpClient {
-  private client: $Fetch
+  private baseUrl: string
+  private m2mToken: string
 
   constructor(config: GoodPartyClientConfig) {
-    const { gpApiRootUrl, m2mToken } = config
-    this.client = ofetch.create({
-      baseURL: gpApiRootUrl,
-      headers: {
-        Authorization: `Bearer ${m2mToken}`,
-      },
-    })
+    this.baseUrl = config.gpApiRootUrl
+    this.m2mToken = config.m2mToken
   }
 
   request = async <T>(path: string, init?: JsonFetchOptions): Promise<T> => {
     try {
-      const response = await this.client.raw<T>(path, init)
+      const response = await ofetch.raw<T>(path, {
+        baseURL: this.baseUrl,
+        headers: {
+          Authorization: `Bearer ${this.m2mToken}`,
+        },
+        ...init,
+      })
       return extractData(response._data)
     } catch (error: unknown) {
       if (error instanceof FetchError) {
