@@ -61,7 +61,7 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes
+          gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes --target ${{ github.sha }}
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
