@@ -1,3 +1,4 @@
+import type { FetchOptions } from 'ofetch'
 import type { HttpClient, OfetchRequestBody } from '../http/HttpClient'
 
 export abstract class BaseResource {
@@ -7,8 +8,10 @@ export abstract class BaseResource {
     this.httpClient = httpClient
   }
 
-  protected getRequest = <T>(path: string): Promise<T> =>
-    this.httpClient.request<T>(path, { method: 'GET' })
+  protected getRequest = <T>(
+    path: string,
+    query?: FetchOptions<'json'>['query'],
+  ): Promise<T> => this.httpClient.request<T>(path, { method: 'GET', query })
 
   protected postRequest = <T>(
     path: string,

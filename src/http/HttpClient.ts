@@ -21,7 +21,7 @@ export class HttpClient {
         baseURL: this.baseUrl,
         headers: {
           Authorization: `Bearer ${this.m2mToken}`,
-          ... (init?.headers ?? {}),
+          ...(init?.headers ?? {}),
         },
         ...init,
       })

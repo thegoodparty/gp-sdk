@@ -4,10 +4,10 @@ import { BaseResource } from './BaseResource'
 
 export class UsersResource extends BaseResource {
   list = async (options?: PaginationOptions): Promise<PaginatedList<User>> => {
-    const result = await this.httpClient.request<{
+    const result = await this.getRequest<{
       data: User[]
       meta: { page: number; limit: number; total: number; totalPages: number }
-    }>('/users', { method: 'GET', query: options })
+    }>('/users', options)
 
     return {
       data: result.data,
