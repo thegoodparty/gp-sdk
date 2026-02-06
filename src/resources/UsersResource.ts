@@ -4,20 +4,10 @@ import { BaseResource } from './BaseResource'
 
 export class UsersResource extends BaseResource {
   list = async (options?: PaginationOptions): Promise<PaginatedList<User>> => {
-    const params = new URLSearchParams()
-    if (options?.page !== undefined) {
-      params.set('page', String(options.page))
-    }
-    if (options?.limit !== undefined) {
-      params.set('limit', String(options.limit))
-    }
-    const query = params.toString()
-    const path = query ? `/users?${query}` : '/users'
-
-    const result = await this.getRequest<{
+    const result = await this.httpClient.request<{
       data: User[]
       meta: { page: number; limit: number; total: number; totalPages: number }
-    }>(path)
+    }>('/users', { method: 'GET', query: options })
 
     return {
       data: result.data,
