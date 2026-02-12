@@ -10,6 +10,7 @@ export class ClerkService {
   private tokenExpiration: number | null = null
   private renewalTimer: ReturnType<typeof setTimeout> | null = null
   private pendingTokenPromise: Promise<string> | null = null
+  private destroyed = false
 
   constructor(m2mSecret: string) {
     this.m2mSecret = m2mSecret
@@ -38,6 +39,7 @@ export class ClerkService {
   }
 
   destroy = (): void => {
+    this.destroyed = true
     if (this.renewalTimer) {
       clearTimeout(this.renewalTimer)
       this.renewalTimer = null
@@ -64,6 +66,8 @@ export class ClerkService {
           'Clerk M2M token creation succeeded but returned no token string',
         )
       }
+
+      if (this.destroyed) return m2mToken.token
 
       this.cachedToken = m2mToken.token
       this.tokenExpiration = m2mToken.expiration
