@@ -97,7 +97,8 @@ export class ClerkService {
     if (timeUntilRenewal <= 0) return
 
     this.renewalTimer = setTimeout(() => {
-      this.createAndCacheToken().catch((error: unknown) => {
+      this.cachedToken = null
+      this.getToken().catch((error: unknown) => {
         console.error('Proactive M2M token renewal failed:', error)
       })
     }, timeUntilRenewal)
