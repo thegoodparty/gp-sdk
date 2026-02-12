@@ -17,11 +17,10 @@ export class HttpClient {
     init?: FetchOptions<'json'>,
   ): Promise<T> => {
     try {
-      const token = await this.getToken()
       return await ofetch<T>(path, {
         baseURL: this.baseUrl,
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${await this.getToken()}`,
           ...(init?.headers ?? {}),
         },
         ...init,
