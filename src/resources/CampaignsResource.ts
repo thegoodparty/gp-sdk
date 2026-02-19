@@ -9,6 +9,9 @@ import { BaseResource } from './BaseResource'
 export class CampaignsResource extends BaseResource {
   protected readonly resourceBasePath = '/campaigns'
 
+  get = (id: number): Promise<Campaign> =>
+    this.getRequest<Campaign>(`${this.resourceBasePath}/${id}`)
+
   list = (options?: ListCampaignsOptions): Promise<PaginatedList<Campaign>> =>
     this.getRequest<PaginatedList<Campaign>>(
       `${this.resourceBasePath}/list`,
