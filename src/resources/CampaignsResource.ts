@@ -7,9 +7,14 @@ import type {
 import { BaseResource } from './BaseResource'
 
 export class CampaignsResource extends BaseResource {
+  protected readonly resourceBasePath = '/campaigns'
+
   list = (options?: ListCampaignsOptions): Promise<PaginatedList<Campaign>> =>
-    this.getRequest<PaginatedList<Campaign>>('/campaigns/list', options)
+    this.getRequest<PaginatedList<Campaign>>(
+      `${this.resourceBasePath}/list`,
+      options,
+    )
 
   update = (id: number, input: UpdateCampaignInput): Promise<Campaign> =>
-    this.putRequest<Campaign>(`/campaigns/${id}`, input)
+    this.putRequest<Campaign>(`${this.resourceBasePath}/${id}`, input)
 }
