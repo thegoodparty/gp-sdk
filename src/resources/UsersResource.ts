@@ -1,22 +1,18 @@
-import type { PaginatedList } from '../types/result'
-import type {
-  ListUsersOptions,
-  UpdatePasswordInput,
-  UpdateUserInput,
-  User,
-} from '../types/user'
+import type { PaginatedList, ReadUserOutput, UpdatePasswordInput } from '@goodparty_org/contracts'
+import type { ListUsersOptions, UpdateUserInput } from '../types/user'
 import { BaseResource } from './BaseResource'
 
 export class UsersResource extends BaseResource {
   protected readonly resourceBasePath = '/users'
 
-  list = (options?: ListUsersOptions): Promise<PaginatedList<User>> =>
-    this.getRequest<PaginatedList<User>>(this.resourceBasePath, options)
+  list = (options?: ListUsersOptions): Promise<PaginatedList<ReadUserOutput>> =>
+    this.getRequest<PaginatedList<ReadUserOutput>>(this.resourceBasePath, options)
 
-  get = (id: number): Promise<User> => this.getRequest<User>(`/users/${id}`)
+  get = (id: number): Promise<ReadUserOutput> =>
+    this.getRequest<ReadUserOutput>(`/users/${id}`)
 
-  update = (id: number, input: UpdateUserInput): Promise<User> =>
-    this.putRequest<User>(`${this.resourceBasePath}/${id}`, input)
+  update = (id: number, input: UpdateUserInput): Promise<ReadUserOutput> =>
+    this.putRequest<ReadUserOutput>(`${this.resourceBasePath}/${id}`, input)
 
   delete = (id: number): Promise<void> =>
     this.deleteRequest<void>(`${this.resourceBasePath}/${id}`)
