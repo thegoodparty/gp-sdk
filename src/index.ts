@@ -2,9 +2,7 @@ export { GoodPartyClient } from './GoodPartyClient'
 export type { GoodPartyClientConfig } from './GoodPartyClient'
 
 export { SdkError } from './types/result'
-export type {
-  PaginationOptions,
-} from './types/result'
+export type { PaginationOptions } from './types/result'
 
 export type {
   PaginationMeta,

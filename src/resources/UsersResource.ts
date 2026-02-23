@@ -1,4 +1,8 @@
-import type { PaginatedList, ReadUserOutput, UpdatePasswordInput } from '@goodparty_org/contracts'
+import type {
+  PaginatedList,
+  ReadUserOutput,
+  UpdatePasswordInput,
+} from '@goodparty_org/contracts'
 import type { ListUsersOptions, UpdateUserInput } from '../types/user'
 import { BaseResource } from './BaseResource'
 
@@ -6,7 +10,10 @@ export class UsersResource extends BaseResource {
   protected readonly resourceBasePath = '/users'
 
   list = (options?: ListUsersOptions): Promise<PaginatedList<ReadUserOutput>> =>
-    this.getRequest<PaginatedList<ReadUserOutput>>(this.resourceBasePath, options)
+    this.getRequest<PaginatedList<ReadUserOutput>>(
+      this.resourceBasePath,
+      options,
+    )
 
   get = (id: number): Promise<ReadUserOutput> =>
     this.getRequest<ReadUserOutput>(`/users/${id}`)
