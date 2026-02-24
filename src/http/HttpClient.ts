@@ -16,7 +16,6 @@ export class HttpClient {
     path: string,
     init?: FetchOptions<'json'>,
   ): Promise<T> => {
-    console.log('request', path, init)
     try {
       return await ofetch<T>(path, {
         baseURL: this.baseUrl,
