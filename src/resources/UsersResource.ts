@@ -10,7 +10,9 @@ import { BaseResource } from './BaseResource'
 export class UsersResource extends BaseResource {
   protected readonly resourceBasePath = '/users'
 
-  list = (options?: ListUsersPagination): Promise<PaginatedList<ReadUserOutput>> =>
+  list = (
+    options?: ListUsersPagination,
+  ): Promise<PaginatedList<ReadUserOutput>> =>
     this.getRequest<PaginatedList<ReadUserOutput>>(
       this.resourceBasePath,
       options,

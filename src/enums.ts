@@ -21,9 +21,7 @@ import {
 
 type EnumObject<T extends readonly string[]> = { [K in T[number]]: K }
 
-const toEnumObject = <T extends readonly string[]>(
-  values: T,
-): EnumObject<T> =>
+const toEnumObject = <T extends readonly string[]>(values: T): EnumObject<T> =>
   Object.fromEntries(values.map((v) => [v, v])) as EnumObject<T>
 
 export type UserRole = UserRoleType
@@ -47,9 +45,7 @@ export type CampaignCreatedBy = CampaignCreatedByType
 export const CampaignCreatedBy = toEnumObject(CAMPAIGN_CREATED_BY_VALUES)
 
 export type CampaignLaunchStatus = CampaignLaunchStatusType
-export const CampaignLaunchStatus = toEnumObject(
-  CAMPAIGN_LAUNCH_STATUS_VALUES,
-)
+export const CampaignLaunchStatus = toEnumObject(CAMPAIGN_LAUNCH_STATUS_VALUES)
 
 export type OnboardingStep = OnboardingStepType
 export const OnboardingStep = toEnumObject(ONBOARDING_STEP_VALUES)
