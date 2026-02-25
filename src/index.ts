@@ -43,21 +43,19 @@ export {
   ELECTION_LEVEL_VALUES,
   CAMPAIGN_CREATED_BY_VALUES,
   CAMPAIGN_LAUNCH_STATUS_VALUES,
+  CAMPAIGN_STATUS_VALUES,
   ONBOARDING_STEP_VALUES,
   GENERATION_STATUS_VALUES,
-} from '@goodparty_org/contracts'
-
-export {
-  UserRole,
-  WhyBrowsing,
-  CampaignTier,
   BallotReadyPositionLevel,
   ElectionLevel,
   CampaignCreatedBy,
   CampaignLaunchStatus,
+  CampaignStatus,
   OnboardingStep,
   GenerationStatus,
-} from './enums'
+} from '@goodparty_org/contracts'
+
+export { UserRole, WhyBrowsing, CampaignTier } from './enums'
 
 export type {
   ElectedOffice,
