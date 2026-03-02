@@ -1,15 +1,16 @@
-import type { PaginatedList } from '@goodparty_org/contracts'
 import type {
-  ListPathsToVictoryOptions,
+  PaginatedList,
   PathToVictory,
+  ListPathsToVictoryPagination,
   UpdatePathToVictoryInput,
-} from '../types/pathToVictory'
+} from '@goodparty_org/contracts'
 import { BaseResource } from './BaseResource'
 
 export class PathsToVictoryResource extends BaseResource {
-  protected resourceBasePath = '/path-to-victory'
+  protected readonly resourceBasePath = '/path-to-victory'
+
   list = (
-    options?: ListPathsToVictoryOptions,
+    options?: ListPathsToVictoryPagination,
   ): Promise<PaginatedList<PathToVictory>> =>
     this.getRequest<PaginatedList<PathToVictory>>(
       `${this.resourceBasePath}/list`,

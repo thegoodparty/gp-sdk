@@ -42,6 +42,8 @@ export {
   USER_ROLE_VALUES,
   WHY_BROWSING_VALUES,
   CAMPAIGN_TIER_VALUES,
+  P2V_STATUS_VALUES,
+  P2V_SOURCE_VALUES,
   BALLOT_READY_POSITION_LEVEL_VALUES,
   ELECTION_LEVEL_VALUES,
   CAMPAIGN_CREATED_BY_VALUES,
@@ -58,20 +60,23 @@ export {
   GenerationStatus,
 } from '@goodparty_org/contracts'
 
-export { UserRole, WhyBrowsing, CampaignTier } from './enums'
+export {
+  UserRole,
+  WhyBrowsing,
+  CampaignTier,
+  P2VStatus,
+  P2VSource,
+} from './enums'
 
 export type {
   ElectedOffice,
-  ListElectedOfficesOptions,
   UpdateElectedOfficeInput,
-} from './types/electedOffice'
-
-export type {
+  ListElectedOfficesPagination,
+  ListElectedOfficesPagination as ListElectedOfficesOptions,
   PathToVictory,
   PathToVictoryData,
   ViabilityScore,
-  ListPathsToVictoryOptions,
   UpdatePathToVictoryInput,
-} from './types/pathToVictory'
-
-export { P2VStatus, P2VSource } from './types/pathToVictory'
+  ListPathsToVictoryPagination,
+  ListPathsToVictoryPagination as ListPathsToVictoryOptions,
+} from '@goodparty_org/contracts'
