@@ -1,16 +1,16 @@
-import type { PaginatedList } from '@goodparty_org/contracts'
 import type {
+  PaginatedList,
   ElectedOffice,
-  ListElectedOfficesOptions,
+  ListElectedOfficesPagination,
   UpdateElectedOfficeInput,
-} from '../types/electedOffice'
+} from '@goodparty_org/contracts'
 import { BaseResource } from './BaseResource'
 
 export class ElectedOfficesResource extends BaseResource {
   protected readonly resourceBasePath = '/elected-office'
 
   list = (
-    options?: ListElectedOfficesOptions,
+    options?: ListElectedOfficesPagination,
   ): Promise<PaginatedList<ElectedOffice>> =>
     this.getRequest<PaginatedList<ElectedOffice>>(
       `${this.resourceBasePath}/list`,
