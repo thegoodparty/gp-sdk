@@ -79,6 +79,7 @@ export type {
 
 export type {
   CampaignWithLiveContext,
+  CampaignWithPositionName,
   RaceTargetMetrics,
 } from './types/campaign'
 
