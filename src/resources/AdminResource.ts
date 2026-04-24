@@ -6,10 +6,10 @@ export class AdminResource extends BaseResource {
 
   impersonateUser = (
     targetUserId: number,
-    actorEmail: string,
+    actorClerkId: string,
   ): Promise<ImpersonateUserOutput> =>
     this.postRequest<ImpersonateUserOutput>(
       `${this.resourceBasePath}/users/impersonate/${targetUserId}`,
-      { actorEmail },
+      { actorClerkId },
     )
 }
